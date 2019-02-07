@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Android_InterfaceListener_SharedPref_NavDrawer_Frag_RecyclerView</string>
+
+    <string name="hint_firstName">First Name</string>
+    <string name="hint_lastName">Last Name</string>
+    <string name="buttonText_Next">Next</string>
+    <string name="buttonText_Cancel">Cancel</string>
+    <string name="buttonText_Send">Send Data</string>
 </resources>
