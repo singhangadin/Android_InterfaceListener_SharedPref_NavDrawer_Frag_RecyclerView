@@ -9,8 +9,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
+
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData.GetData;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData.SendData;
 
 public class MainActivity extends AppCompatActivity {
 

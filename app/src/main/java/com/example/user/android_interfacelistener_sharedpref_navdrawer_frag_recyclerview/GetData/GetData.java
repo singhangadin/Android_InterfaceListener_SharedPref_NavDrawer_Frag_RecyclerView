@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData;
 
 
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

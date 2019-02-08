@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 
 import java.util.ArrayList;
 

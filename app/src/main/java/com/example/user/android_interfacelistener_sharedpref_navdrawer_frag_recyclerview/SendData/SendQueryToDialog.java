@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 
 public class SendQueryToDialog extends DialogFragment {
 

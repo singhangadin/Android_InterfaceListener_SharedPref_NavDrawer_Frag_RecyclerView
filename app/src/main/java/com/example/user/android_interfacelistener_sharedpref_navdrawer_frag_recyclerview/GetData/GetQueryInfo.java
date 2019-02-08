@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData;
 
 public class GetQueryInfo {
 
