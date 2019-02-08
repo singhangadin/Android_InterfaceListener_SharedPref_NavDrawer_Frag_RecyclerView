@@ -6,4 +6,16 @@
     <string name="buttonText_Next">Next</string>
     <string name="buttonText_Cancel">Cancel</string>
     <string name="buttonText_Send">Send Data</string>
+
+    <string name="text_homeFragment">Home Fragment</string>
+
+    <string name="textMenu_home">Home</string>
+    <string name="textMenu_send">Send Data</string>
+    <string name="textMenu_get">Get Data</string>
+
+    <string name="text_firstName">First Name :</string>
+    <string name="text_lastName">Last Name :</string>
+
+    <string name="textButton_next">Next</string>
+    <string name="text_userData">User Data</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerContent(navigationView);
 
 
-//        if(savedInstanceState == null){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new SendData()).commit();
-//            navigationView.setCheckedItem(R.id.send_data);
-//        }
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.home_fragment);
+        }
     }
 
     @Override
@@ -68,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()){
 
+            case R.id.home_fragment :
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new HomeFragment()).commit();
+                break;
+
+            case R.id.send_data :
+                Intent intent = new Intent(this,SendData.class);
+                startActivity(intent);
+                break;
 
                 case R.id.get_data :
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new GetData()).commit();

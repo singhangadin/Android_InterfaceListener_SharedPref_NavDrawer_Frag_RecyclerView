@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
+        android:background="@color/colorDialogBackground">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/text_firstName"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    android:id="@+id/firstName_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    tools:text="Dexter"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/text_lastName"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    android:id="@+id/lastName_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    tools:text="Gram"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            android:weightSum="2"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/cancelQuery_button"
+                android:layout_weight="1"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/buttonText_Cancel"
+                />
+            <Button
+                android:id="@+id/sendQuery_button"
+                android:layout_weight="1"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/buttonText_Send"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
