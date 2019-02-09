@@ -3,6 +3,7 @@ package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_rec
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,10 +20,9 @@ import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recy
  */
 public class SendQueryFragment extends Fragment {
 
-
     private TextView firstName;
     private TextView lastName;
-    OnQueryListener onQueryListener;
+    private OnQueryListener onQueryListener;
 
     public  interface OnQueryListener{
         void query(String firstName, String lastName);
@@ -32,7 +32,7 @@ public class SendQueryFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            if(context instanceof OnQueryListener){
+            if(context instanceof OnQueryListener) {
                 onQueryListener = (OnQueryListener) context;
             }
         } catch (Exception e) {
@@ -46,13 +46,12 @@ public class SendQueryFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_send_query1, container, false);
+        View view = inflater.inflate(R.layout.fragment_send_query, container, false);
 
-        firstName = (TextView) view.findViewById(R.id.fName);
-        lastName = (TextView) view.findViewById(R.id.lName);
+        firstName = view.findViewById(R.id.fName);
+        lastName = view.findViewById(R.id.lName);
 
         firstName.addTextChangedListener(textWatcher);
         lastName.addTextChangedListener(textWatcher);
@@ -62,7 +61,6 @@ public class SendQueryFragment extends Fragment {
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
@@ -75,7 +73,6 @@ public class SendQueryFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     };
 }

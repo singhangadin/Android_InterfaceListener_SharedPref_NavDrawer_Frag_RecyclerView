@@ -14,13 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.utils.Constants;
 
-public class SendQueryToDialog extends DialogFragment {
+public class SendQueryToDialog extends DialogFragment implements View.OnClickListener {
 
     private TextView firstName;
     private TextView lastName;
-    private Button cancel;
-    private Button sendQuery;
 
     String uFName,uLName;
     SharedPreferences sharedPreferences;
@@ -29,45 +28,19 @@ public class SendQueryToDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.sendquery_to_dialog,container,false);
-
         getDialog().setTitle("Send Data");
-        firstName = (TextView) view.findViewById(R.id.firstName_textView);
-        lastName = (TextView) view.findViewById(R.id.lastName_textView);
 
-        cancel = (Button) view.findViewById(R.id.cancelQuery_button);
-        sendQuery = (Button) view.findViewById(R.id.sendQuery_button);
+        sharedPreferences = getContext().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
+        firstName = view.findViewById(R.id.firstName_textView);
+        lastName = view.findViewById(R.id.lastName_textView);
 
         getQueryFromSendData();
-        cancelQuery();
-        sendQuery();
+        view.findViewById(R.id.cancelQuery_button).setOnClickListener(this);
+        view.findViewById(R.id.sendQuery_button).setOnClickListener(this);
         return view;
     }
 
-    private void cancelQuery(){
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
-    }
-
-    private void sendQuery(){
-        sendQuery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPreferences = getActivity().getSharedPreferences("SendDataActivity",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("ValueFName",uFName);
-                editor.putString("ValueLName",uLName);
-                editor.apply();
-                getDialog().dismiss();
-                Toast.makeText(getContext(),"Full Name :"+uFName+" "+uLName,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void getQueryFromSendData(){
+    private void getQueryFromSendData() {
         Bundle bundle = getArguments();
 
         uFName = bundle.getString("fName");
@@ -75,5 +48,25 @@ public class SendQueryToDialog extends DialogFragment {
 
         uLName = bundle.getString("lName");
         lastName.setText(uLName);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sendQuery_button: {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("ValueFName",uFName);
+                editor.putString("ValueLName",uLName);
+                editor.apply();
+                getDialog().dismiss();
+                Toast.makeText(getContext(),"Full Name :" + uFName + " " + uLName,Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case R.id.cancelQuery_button: {
+                getDialog().dismiss();
+                break;
+            }
+        }
     }
 }

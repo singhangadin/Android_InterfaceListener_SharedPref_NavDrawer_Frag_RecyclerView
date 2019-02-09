@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,26 +14,25 @@ import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recy
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.dialogs.SendQueryToDialog;
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments.SendQueryFragment;
 
-public class SendDataActivity extends AppCompatActivity implements SendQueryFragment.OnQueryListener {
-
+public class SendDataActivity extends AppCompatActivity implements SendQueryFragment.OnQueryListener, View.OnClickListener {
     private Toolbar toolbar;
     private Button nextButton;
     private FragmentManager fragmentManager;
-    String userFirstName,userLastName;
+    private String userFirstName, userLastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_data);
 
-        toolbar =(Toolbar) findViewById(R.id.toolbar_SendQuery);
+        toolbar = findViewById(R.id.toolbar_SendQuery);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nextButton = (Button) findViewById(R.id.next_Button);
+        nextButton = findViewById(R.id.next_Button);
+        nextButton.setOnClickListener(this);
 
         fragmentManager =  getSupportFragmentManager();
-
 
         sendQueryOne();
     }
@@ -62,22 +62,15 @@ public class SendDataActivity extends AppCompatActivity implements SendQueryFrag
         userFirstName = firstName;
         userLastName = lastName;
 
-        if(!userFirstName.isEmpty() && !userLastName.isEmpty()){
+        if(!TextUtils.isEmpty(userFirstName) && !TextUtils.isEmpty(userLastName)) {
             nextButton.setEnabled(true);
-            nextButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sendQueryToDialog();
-                }
-            });
         }
-        else{
+        else {
             nextButton.setEnabled(false);
         }
-
     }
 
-    private void sendQueryToDialog(){
+    private void sendQueryToDialog() {
         Bundle bundle = new Bundle();
         bundle.putString("fName",userFirstName);
         bundle.putString("lName",userLastName);
@@ -86,5 +79,10 @@ public class SendDataActivity extends AppCompatActivity implements SendQueryFrag
         sendQueryToDialog.setArguments(bundle);
         sendQueryToDialog.show(fragmentManager,"SendToDialog");
         sendQueryToDialog.setCancelable(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        sendQueryToDialog();
     }
 }

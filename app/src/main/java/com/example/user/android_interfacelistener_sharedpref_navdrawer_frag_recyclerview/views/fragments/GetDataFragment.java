@@ -4,6 +4,7 @@ package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_rec
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.model.GetQueryInfo;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.utils.Constants;
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.adapters.GetQueryAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,7 +36,6 @@ public class GetDataFragment extends Fragment {
     private SharedPreferences sharedPreferences;
 
     public GetDataFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -44,17 +45,15 @@ public class GetDataFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_get_data, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         View view =  inflater.inflate(R.layout.fragment_get_data, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        getQueryInfoArrayList =  new ArrayList<>();
+        getQueryInfoArrayList = new ArrayList<>();
 
-        getQueryAdapter =  new GetQueryAdapter(getContext(),getQueryInfoArrayList);
+        getQueryAdapter =  new GetQueryAdapter(getContext(), getQueryInfoArrayList);
         recyclerView.setAdapter(getQueryAdapter);
 
         getDataFromDialog();
@@ -62,24 +61,24 @@ public class GetDataFragment extends Fragment {
         return view;
     }
 
-    private void getDataFromDialog(){
-        String uFName,uLName;
-        sharedPreferences = getActivity().getSharedPreferences("SendDataActivity",Context.MODE_PRIVATE);
-        uFName = sharedPreferences.getString("ValueFName","0");
-        uLName = sharedPreferences.getString("ValueLName","0");
+    private void getDataFromDialog() {
+        String uFName, uLName;
+        sharedPreferences = getActivity().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
+        uFName = sharedPreferences.getString(Constants.KEY_FNAME, "John");
+        uLName = sharedPreferences.getString(Constants.KEY_LNAME, "Doe");
 
         getQueryInfoArrayList.add(new GetQueryInfo(uFName,uLName));
         getQueryAdapter.notifyItemInserted(getQueryInfoArrayList.size());
     }
 
-    private void loadData(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SharedPreferences",Context.MODE_PRIVATE);
+    private void loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("task value",null);
+        String json = sharedPreferences.getString("task value", null);
         Type type = new TypeToken<ArrayList<GetQueryInfo>>(){}.getType();
         getQueryInfoArrayList = gson.fromJson(json,type);
 
-        if(getQueryInfoArrayList == null){
+        if (getQueryInfoArrayList == null) {
             getQueryInfoArrayList = new ArrayList<>();
         }
     }

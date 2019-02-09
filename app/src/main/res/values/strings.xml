@@ -18,4 +18,5 @@
 
     <string name="textButton_next">Next</string>
     <string name="text_userData">User Data</string>
+    <string name="label_nav_header">Nav Header</string>
 </resources>

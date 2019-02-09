@@ -17,22 +17,22 @@ public class GetQueryAdapter extends RecyclerView.Adapter<GetQueryAdapter.MyCard
     private Context context;
     private ArrayList<GetQueryInfo> getQueryInfoArrayList;
 
-    public GetQueryAdapter(Context context,ArrayList<GetQueryInfo> getQueryInfoArrayList){
+    public GetQueryAdapter(Context context, @NonNull ArrayList<GetQueryInfo> getQueryInfoArrayList) {
         this.context = context;
         this.getQueryInfoArrayList = getQueryInfoArrayList;
     }
 
     @NonNull
     @Override
-    public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.getquery_adapter_cardview,viewGroup,false);
+    public MyCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_query,viewGroup,false);
         return new MyCardViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int i) {
-        GetQueryInfo getQueryInfo = getQueryInfoArrayList.get(i);
+    public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int position) {
+        GetQueryInfo getQueryInfo = getQueryInfoArrayList.get(position);
         myCardViewHolder.userFirstName.setText(getQueryInfo.getFirstName());
         myCardViewHolder.userLastName.setText(getQueryInfo.getFirstName());
     }
@@ -42,14 +42,14 @@ public class GetQueryAdapter extends RecyclerView.Adapter<GetQueryAdapter.MyCard
         return getQueryInfoArrayList.size();
     }
 
-    public class MyCardViewHolder extends RecyclerView.ViewHolder{
+    class MyCardViewHolder extends RecyclerView.ViewHolder{
         TextView userFirstName;
         TextView userLastName;
 
-        public MyCardViewHolder(@NonNull View itemView) {
+        MyCardViewHolder(@NonNull View itemView) {
             super(itemView);
-            userFirstName = (TextView) itemView.findViewById(R.id.firstName_textView);
-            userLastName = (TextView) itemView.findViewById(R.id.lastName_textView);
+            userFirstName = itemView.findViewById(R.id.firstName_textView);
+            userLastName = itemView.findViewById(R.id.lastName_textView);
         }
     }
 }

@@ -3,7 +3,6 @@ package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_rec
 import android.support.annotation.NonNull;
 
 public class GetQueryInfo {
-
     private String firstName;
     private String lastName;
 
@@ -12,19 +11,21 @@ public class GetQueryInfo {
         this.lastName = lastName;
     }
 
+    @NonNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
 
+    @NonNull
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(@NonNull String lastName) {
         this.lastName = lastName;
     }
 }

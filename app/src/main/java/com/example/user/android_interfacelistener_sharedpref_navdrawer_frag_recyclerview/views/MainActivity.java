@@ -17,33 +17,29 @@ import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recy
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private NavigationView navigationView;
     private ActionBar actionBar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // drawerToggle = setupDrawerToogle();
+        drawerLayout = findViewById(R.id.drawer_layout);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        // drawerLayout.addDrawerListener(drawerToggle);
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
 
-
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.home_fragment);
         }
@@ -51,15 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch ((item.getItemId())){
-            case android.R.id.home:
+        switch ((item.getItemId())) {
+            case android.R.id.home: {
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            }
+
+            default: {
+                return super.onOptionsItemSelected(item);
+            }
         }
-        return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawerContent(NavigationView navigationView){
+    private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -69,21 +69,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void selectDrawerItem(MenuItem menuItem){
-        switch (menuItem.getItemId()){
-
-            case R.id.home_fragment :
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new HomeFragment()).commit();
+    public void selectDrawerItem(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.home_fragment : {
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
                 break;
+            }
 
-            case R.id.send_data :
+            case R.id.send_data : {
                 Intent intent = new Intent(this, SendDataActivity.class);
                 startActivity(intent);
                 break;
+            }
 
-                case R.id.get_data :
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new GetDataFragment()).commit();
+            case R.id.get_data : {
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new GetDataFragment()).commit();
                 break;
+            }
         }
 
         menuItem.setChecked(true);
@@ -93,13 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        else{
+        else {
             super.onBackPressed();
         }
     }
-
-
 }
