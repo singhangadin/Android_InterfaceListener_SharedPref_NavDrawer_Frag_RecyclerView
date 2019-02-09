@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.dialogs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -56,7 +56,7 @@ public class SendQueryToDialog extends DialogFragment {
         sendQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getActivity().getSharedPreferences("SendData",Context.MODE_PRIVATE);
+                sharedPreferences = getActivity().getSharedPreferences("SendDataActivity",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("ValueFName",uFName);
                 editor.putString("ValueLName",uLName);

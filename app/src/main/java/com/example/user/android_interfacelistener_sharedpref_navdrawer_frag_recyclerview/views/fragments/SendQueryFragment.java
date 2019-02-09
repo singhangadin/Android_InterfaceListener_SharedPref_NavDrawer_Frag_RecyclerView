@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments;
 
 
 import android.content.Context;
@@ -17,7 +17,7 @@ import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recy
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SendQuery1 extends Fragment {
+public class SendQueryFragment extends Fragment {
 
 
     private TextView firstName;
@@ -40,7 +40,7 @@ public class SendQuery1 extends Fragment {
         }
     }
 
-    public SendQuery1() {
+    public SendQueryFragment() {
         // Required empty public constructor
     }
 

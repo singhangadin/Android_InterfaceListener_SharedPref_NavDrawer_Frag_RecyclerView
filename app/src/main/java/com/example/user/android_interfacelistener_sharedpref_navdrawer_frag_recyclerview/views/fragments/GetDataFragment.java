@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments;
 
 
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.model.GetQueryInfo;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.adapters.GetQueryAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GetData extends Fragment {
+public class GetDataFragment extends Fragment {
 
     private GetQueryAdapter getQueryAdapter;
     private ArrayList<GetQueryInfo> getQueryInfoArrayList;
@@ -31,7 +33,7 @@ public class GetData extends Fragment {
 
     private SharedPreferences sharedPreferences;
 
-    public GetData() {
+    public GetDataFragment() {
         // Required empty public constructor
     }
 
@@ -62,7 +64,7 @@ public class GetData extends Fragment {
 
     private void getDataFromDialog(){
         String uFName,uLName;
-        sharedPreferences = getActivity().getSharedPreferences("SendData",Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("SendDataActivity",Context.MODE_PRIVATE);
         uFName = sharedPreferences.getString("ValueFName","0");
         uLName = sharedPreferences.getString("ValueLName","0");
 

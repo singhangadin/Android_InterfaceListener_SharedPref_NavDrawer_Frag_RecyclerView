@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -9,10 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.MainActivity;
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.dialogs.SendQueryToDialog;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments.SendQueryFragment;
 
-public class SendData extends AppCompatActivity implements SendQuery1.OnQueryListener {
+public class SendDataActivity extends AppCompatActivity implements SendQueryFragment.OnQueryListener {
 
     private Toolbar toolbar;
     private Button nextButton;
@@ -40,7 +41,7 @@ public class SendData extends AppCompatActivity implements SendQuery1.OnQueryLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(SendData.this,MainActivity.class);
+        Intent intent = new Intent(SendDataActivity.this,MainActivity.class);
         startActivity(intent);
     }
     @Override
@@ -50,9 +51,9 @@ public class SendData extends AppCompatActivity implements SendQuery1.OnQueryLis
     }
 
     private void sendQueryOne(){
-        SendQuery1 sendQuery1 = new SendQuery1();
+        SendQueryFragment sendQueryFragment = new SendQueryFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameContainer,sendQuery1,"addSendQuery1");
+        fragmentTransaction.add(R.id.frameContainer, sendQueryFragment,"addSendQuery1");
         fragmentTransaction.commit();
     }
 

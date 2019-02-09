@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.model.GetQueryInfo;
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 
 import java.util.ArrayList;
 
 public class GetQueryAdapter extends RecyclerView.Adapter<GetQueryAdapter.MyCardViewHolder> {
-
     private Context context;
     private ArrayList<GetQueryInfo> getQueryInfoArrayList;
 

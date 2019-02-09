@@ -1,4 +1,4 @@
-package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview;
+package com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,8 +11,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.GetData.GetData;
-import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.SendData.SendData;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments.GetDataFragment;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.views.fragments.HomeFragment;
+import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.send_data :
-                Intent intent = new Intent(this,SendData.class);
+                Intent intent = new Intent(this, SendDataActivity.class);
                 startActivity(intent);
                 break;
 
                 case R.id.get_data :
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new GetData()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new GetDataFragment()).commit();
                 break;
         }
 
