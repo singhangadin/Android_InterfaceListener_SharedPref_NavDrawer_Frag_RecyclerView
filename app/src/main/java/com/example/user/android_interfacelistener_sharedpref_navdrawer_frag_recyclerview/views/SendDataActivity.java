@@ -37,20 +37,13 @@ public class SendDataActivity extends AppCompatActivity implements SendQueryFrag
         sendQueryOne();
     }
 
-    //Toolbar working.
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(SendDataActivity.this,MainActivity.class);
-        startActivity(intent);
-    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
-    private void sendQueryOne(){
+    private void sendQueryOne() {
         SendQueryFragment sendQueryFragment = new SendQueryFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frameContainer, sendQueryFragment,"addSendQuery1");
