@@ -22,12 +22,15 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GetDataFragment extends Fragment {
+public class GetDataFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private GetQueryAdapter getQueryAdapter;
     private ArrayList<GetQueryInfo> getQueryInfoArrayList;
@@ -39,14 +42,10 @@ public class GetDataFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        loadData();
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          View view =  inflater.inflate(R.layout.fragment_get_data, container, false);
+        sharedPreferences = getActivity().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -56,30 +55,44 @@ public class GetDataFragment extends Fragment {
         getQueryAdapter =  new GetQueryAdapter(getContext(), getQueryInfoArrayList);
         recyclerView.setAdapter(getQueryAdapter);
 
-        getDataFromDialog();
 
+        loadData();
         return view;
     }
 
-    private void getDataFromDialog() {
-        String uFName, uLName;
-        sharedPreferences = getActivity().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
-        uFName = sharedPreferences.getString(Constants.KEY_FNAME, "John");
-        uLName = sharedPreferences.getString(Constants.KEY_LNAME, "Doe");
+    @Override
+    public void onDestroyView() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroyView();
+    }
 
-        getQueryInfoArrayList.add(new GetQueryInfo(uFName,uLName));
+    private void getDataFromDialog() {
+        String name = sharedPreferences.getString(Constants.KEY_NAME, "John Does");
+
+        getQueryInfoArrayList.add(new GetQueryInfo(name.split(" ")[0], name.split(" ")[1]));
         getQueryAdapter.notifyItemInserted(getQueryInfoArrayList.size());
+
+        Set<String> names = sharedPreferences.getStringSet(Constants.KEY_NAME_LIST, new LinkedHashSet<String>());
+        names.add(name);
+
+        sharedPreferences.edit().putStringSet(Constants.KEY_NAME_LIST, names).apply();
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("task value", null);
-        Type type = new TypeToken<ArrayList<GetQueryInfo>>(){}.getType();
-        getQueryInfoArrayList = gson.fromJson(json,type);
+        Set<String> names = sharedPreferences.getStringSet(Constants.KEY_NAME_LIST, new LinkedHashSet<String>());
+        int start = getQueryInfoArrayList.size();
+        for (String name: names) {
+            getQueryInfoArrayList.add(new GetQueryInfo(name.split(" ")[0], name.split(" ")[1]));
+        }
+        getQueryAdapter.notifyItemRangeInserted(start, getQueryInfoArrayList.size());
+    }
 
-        if (getQueryInfoArrayList == null) {
-            getQueryInfoArrayList = new ArrayList<>();
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        switch (key) {
+            case Constants.KEY_NAME: {
+                getDataFromDialog();
+            }
         }
     }
 }

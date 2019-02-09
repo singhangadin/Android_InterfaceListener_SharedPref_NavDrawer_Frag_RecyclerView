@@ -9,7 +9,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,17 +16,16 @@ import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recy
 import com.example.user.android_interfacelistener_sharedpref_navdrawer_frag_recyclerview.utils.Constants;
 
 public class SendQueryToDialog extends DialogFragment implements View.OnClickListener {
-
     private TextView firstName;
     private TextView lastName;
 
-    String uFName,uLName;
-    SharedPreferences sharedPreferences;
+    private String uFName, uLName;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.sendquery_to_dialog,container,false);
+        View view  = inflater.inflate(R.layout.dialog_send_query_to,container,false);
         getDialog().setTitle("Send Data");
 
         sharedPreferences = getContext().getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
@@ -42,7 +40,6 @@ public class SendQueryToDialog extends DialogFragment implements View.OnClickLis
 
     private void getQueryFromSendData() {
         Bundle bundle = getArguments();
-
         uFName = bundle.getString("fName");
         firstName.setText(uFName);
 
@@ -55,11 +52,10 @@ public class SendQueryToDialog extends DialogFragment implements View.OnClickLis
         switch (v.getId()) {
             case R.id.sendQuery_button: {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("ValueFName",uFName);
-                editor.putString("ValueLName",uLName);
+                editor.putString(Constants.KEY_NAME, uFName + " " + uLName);
                 editor.apply();
                 getDialog().dismiss();
-                Toast.makeText(getContext(),"Full Name :" + uFName + " " + uLName,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Full Name :" + uFName + " " + uLName, Toast.LENGTH_SHORT).show();
                 break;
             }
 

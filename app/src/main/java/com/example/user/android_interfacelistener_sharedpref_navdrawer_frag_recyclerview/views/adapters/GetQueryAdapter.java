@@ -34,7 +34,7 @@ public class GetQueryAdapter extends RecyclerView.Adapter<GetQueryAdapter.MyCard
     public void onBindViewHolder(@NonNull MyCardViewHolder myCardViewHolder, int position) {
         GetQueryInfo getQueryInfo = getQueryInfoArrayList.get(position);
         myCardViewHolder.userFirstName.setText(getQueryInfo.getFirstName());
-        myCardViewHolder.userLastName.setText(getQueryInfo.getFirstName());
+        myCardViewHolder.userLastName.setText(getQueryInfo.getLastName());
     }
 
     @Override
